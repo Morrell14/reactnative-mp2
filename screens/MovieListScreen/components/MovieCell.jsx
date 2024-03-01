@@ -8,12 +8,22 @@ export const MovieCell = ({ movieItem }) => {
   // HINT: Take a look at the movieCell styles, as well as the video
   // demo in the spec, to figure out what this should look like.
   return (
-    <View>
+    <View style = {styles.movieCell}>
 
-      <Image style = {styles.movieCellImage} source = {movieItem.poster} />
-      <Text style = {styles.movieCellTitle}> {movieItem.title} </Text>
-      <Text style = {styles.movieCellSubtitle}>{movieItem.actors}</Text>
-        
+
+
+      <View style = {styles.movieCellLeft}>
+        <Image style = {styles.movieCellImage} source = {{uri: movieItem.posterurl}} />
+      </View>
+
+      <View style = {styles.movieCellRight}>
+        <Text style = {styles.movieCellTitle}> {movieItem.title} </Text>
+        <Text style = {styles.movieCellSubtitle}> {movieItem.actors} </Text> 
+      </View>
+         
+
     </View>
+
+
   );
 };

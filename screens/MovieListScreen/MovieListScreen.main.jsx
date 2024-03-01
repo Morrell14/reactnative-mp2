@@ -23,6 +23,8 @@ export default function MovieListScreen({ navigation, route }) {
       // TODO: Add a "Filter" button to the right bar button.
       // It should lead to the MovieFilterScreen, and pass the "actors" state
       // variable as a parameter.
+      
+      
     },
     [
       /* TODO: Insert dependencies here. */
@@ -58,6 +60,10 @@ export default function MovieListScreen({ navigation, route }) {
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
 
+    
+
+
+
     if (meetsSearchCriteria && meetsActorsCriteria) {
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
       return (
@@ -86,8 +92,7 @@ export default function MovieListScreen({ navigation, route }) {
              onChangeText={setSearch}
              value={search}
           />
-                
-                
+                          
       }
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */
       

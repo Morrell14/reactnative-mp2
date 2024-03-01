@@ -31,5 +31,6 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     justifyContent: "center",
     alignItems: "baseline",
+    
   },
 });
