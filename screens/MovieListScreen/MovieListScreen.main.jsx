@@ -3,6 +3,7 @@ import { SafeAreaView, FlatList, Button, TouchableOpacity } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
+import { View } from "react-native-web";
 
 // We can use JSON files by simply requiring them.
 const TABLE_DATA = require("../../assets/movies.json");
@@ -60,8 +61,14 @@ export default function MovieListScreen({ navigation, route }) {
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
 
-    
-
+    if (search) {
+      
+      const searchTerm = search.toLowerCase(); 
+      const movieTitle = item.title.toLowerCase(); 
+      if (!movieTitle.startsWith(searchTerm)) {
+        meetsSearchCriteria = false;
+      }
+    }
 
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
@@ -83,7 +90,7 @@ export default function MovieListScreen({ navigation, route }) {
   // Our final view consists of a search bar and flat list, wrapped in
   // a SafeAreaView to support iOS.
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style = {styles.container}>
       {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */
          
