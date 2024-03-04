@@ -4,6 +4,7 @@ import { SearchBar } from "react-native-elements";
 import { MovieCell } from "./components/MovieCell";
 import { styles } from "./MovieListScreen.styles";
 import { View } from "react-native-web";
+import { getAllActors } from "../../constants/Constants";
 
 // We can use JSON files by simply requiring them.
 const TABLE_DATA = require("../../assets/movies.json");
@@ -14,23 +15,42 @@ export default function MovieListScreen({ navigation, route }) {
   const [search, setSearch] = useState("");
   const [actors, setActors] = useState([]);
 
-  // TODO: Fill out the methods below.
-  const selectedMovie = (movieItem) => {};
+  //setActors(getAllActors)
 
-  const selectedFilterButton = () => {};
+
+  // TODO: Fill out the methods below.
+  const selectedMovie = (movieItem) => {
+
+  };
+
+  const selectedFilterButton = () => {
+    
+    navigation.navigate("Filter", {Actors: actors})
+    
+  };
+
+  
 
   useEffect(
     () => {
       // TODO: Add a "Filter" button to the right bar button.
       // It should lead to the MovieFilterScreen, and pass the "actors" state
       // variable as a parameter.
+
       
-      
-    },
-    [
-      /* TODO: Insert dependencies here. */
-    ]
-  );
+      navigation.setOptions({
+        
+        headerRight: () => (
+          <Button
+            onPress={selectedFilterButton}
+            title="Filter"
+            color="#1e90ff" // Set your desired color here
+          />
+        ),
+
+      });
+
+    }, []);
 
   useEffect(
     () => {
@@ -38,15 +58,26 @@ export default function MovieListScreen({ navigation, route }) {
           See https://reactnavigation.org/docs/params/#passing-params-to-a-previous-screen
           for an example of how to send data BACKWARDS in the navigation stack.
       */
+
+        
+     
+          if (route.params?.Actors) {
+            // Post updated, do something with `route.params.post`
+            // For example, send the post to the server
+            setActors(route.params.Actors)
+          }
+        
     },
     [
       /* TODO: Insert dependencies here. What variable changes 
         when we come back from the filter screen? */
+        route.params?.Actors
     ]
   );
 
   // Renders a row of the FlatList.
   const renderItem = ({ item }) => {
+
     const overlapFound = (listA, listB) => {
       let foundActor = false;
       listA.forEach((x) => {
@@ -61,6 +92,7 @@ export default function MovieListScreen({ navigation, route }) {
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
 
+
     if (search) {
       
       const searchTerm = search.toLowerCase(); 
@@ -70,12 +102,26 @@ export default function MovieListScreen({ navigation, route }) {
       }
     }
 
+    if(actors.length > 0) {
+
+      meetsActorsCriteria = overlapFound(actors, item.actors);
+    }
+
+    // if the actors filtered appear in any movie, and display THAT movieCell
+    // overlap will hep with that
+
+    // if (!overlapFound(actors, item.actors)) {
+    //   meetsSearchCriteria = true;
+    // }
+
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
+
+      const onPress = () => navigation.navigate("details", {movie: item});
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
       return (
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress ={onPress}>
           <MovieCell movieItem = {item}/>
         </TouchableOpacity>
       );

@@ -23,12 +23,13 @@ import MovieFilterScreen from "./screens/MovieFilterScreen/MovieFilterScreen.mai
   https://reactnavigation.org/docs/modal */
 
   const Stack = createStackNavigator();
-  
+
 export default function App() {
   return <NavigationContainer>{
     <Stack.Navigator>
-      <Stack.Screen name="Movies" component={MovieListScreen} />
+      <Stack.Screen name="Movies" component={MovieListScreen}/>
       <Stack.Screen name="details" component={MovieDetailScreen} />
+      <Stack.Screen name="Filter" component={MovieFilterScreen} />
     </Stack.Navigator>
     
     }</NavigationContainer>;
