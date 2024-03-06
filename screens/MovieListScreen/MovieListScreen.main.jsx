@@ -15,8 +15,6 @@ export default function MovieListScreen({ navigation, route }) {
   const [search, setSearch] = useState("");
   const [actors, setActors] = useState([]);
 
-  //setActors(getAllActors)
-
 
   // TODO: Fill out the methods below.
   const selectedMovie = (movieItem) => {
@@ -59,8 +57,6 @@ export default function MovieListScreen({ navigation, route }) {
           for an example of how to send data BACKWARDS in the navigation stack.
       */
 
-        
-     
           if (route.params?.Actors) {
             // Post updated, do something with `route.params.post`
             // For example, send the post to the server
