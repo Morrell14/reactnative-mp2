@@ -18,7 +18,7 @@ export const MovieCell = ({ movieItem }) => {
 
       <View style = {styles.movieCellRight}>
         <Text style = {styles.movieCellTitle}> {movieItem.title} </Text>
-        <Text style = {styles.movieCellSubtitle}> {movieItem.actors} </Text> 
+        <Text style = {styles.movieCellSubtitle}> {movieItem.actors.join(', ')} </Text> 
       </View>
          
 

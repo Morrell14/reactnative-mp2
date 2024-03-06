@@ -107,14 +107,6 @@ export default function MovieListScreen({ navigation, route }) {
       meetsActorsCriteria = overlapFound(actors, item.actors);
     }
 
-    // if the actors filtered appear in any movie, and display THAT movieCell
-    // overlap will hep with that
-
-    // if (!overlapFound(actors, item.actors)) {
-    //   meetsSearchCriteria = true;
-    // }
-
-
     if (meetsSearchCriteria && meetsActorsCriteria) {
 
       const onPress = () => navigation.navigate("details", {movie: item});
